@@ -8,7 +8,7 @@ html, body{
     flex-direction: row;
 }
 
-.squares11{
+/* .squares11{
     display: inline-block;
     flex-grow: 1;
     border: 1px solid #83685f;
@@ -20,21 +20,24 @@ html, body{
     flex-grow: 1;
     border: 1px solid #83685f;
     background-color: #EBD8BA;
+
 }
 
 .squares00{
     display: inline-block;
     flex-grow: 1;
     border: 1px solid #83685f;
-    background-color: #9D776A;
-}
+    background-color: rgb(157, 119, 106);
+    
+}*/
 
-.squares01{
+.squares{
     display: inline-block;
     flex-grow: 1;
-    border: 1px solid #83685f;
-    background-color: #EBD8BA;
+    /* border: 1px solid rgb(168, 87, 175);
+    background-color: rgb(206, 79, 132);  */
 }
+
 
 #main-contain{
     position: relative;

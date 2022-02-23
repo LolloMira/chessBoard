@@ -22,20 +22,20 @@ function chessBoard(number) {
         container.appendChild(line);
         for (let j = 1; j <= number; j++) {
             let square = document.createElement('div');
-            square.className = 'squares' +(i%2)+(j%2);
-            // if (i% 2 !== 0) {
-            //     if (j % 2 !== 0) {
-            //         square.style.backgroundColor = '#9D776A';
-            //     } else{
-            //         square.style.backgroundColor = '#EBD8BA';
-            //     }
-            // } else {
-            //     if (j % 2 === 0) {
-            //         square.style.backgroundColor = '#9D776A';
-            //     } else{
-            //         square.style.backgroundColor = '#EBD8BA';
-            //     }
-            // }
+            square.className = 'squares';
+            if (i% 2 !== 0) {
+                if (j % 2 !== 0) {
+                    square.style.backgroundColor = 'rgb(0, 255, 0)';
+                } else{
+                    square.style.backgroundColor = 'rgb(250, 79, 132)';
+                }
+            } else {
+                if (j % 2 === 0) {
+                    square.style.backgroundColor = 'rgb(0, 255, 0)';
+                } else{
+                    square.style.backgroundColor = 'rgb(250, 79, 132)';
+                }
+            }
             cells.push(square);
             line.appendChild(square);
         }
@@ -44,25 +44,59 @@ function chessBoard(number) {
     let body = document.getElementsByTagName('body')[0]
     body.appendChild(container);
     requestAnimationFrame(() => animate(0));
+    //requestAnimationFrame((incremental) => baseAnimation(incremental, 0));
 }
 
 
     
+
+// function animate(time){
+//     let index = time % cells.length;
+
+//     let colorGradient = 1 / cells.length;
+//     let step = 0 + colorGradient * index;
+    
+//     cells[index].style.backgroundColor ="rgba("+ 255 + ", 0, 0,"+step+" )";
+//     for (let i = 0; i < cells.length; i++) {
+//         cells[i].style.transform = 'rotate('+ time +'deg)'; 
+//     }
+
+    
+//     requestAnimationFrame(() => animate(time + 1))
+    
+
+// }
 
 function animate(time){
-    let change = true;
-    realtime = time/20
-
-    let index = Math.floor(realtime) % cells.length;
-
-    // if (cells[index - 1]) {
-    //     cells[index - 1].style.backgroundColor = '';
-    // } else {
-    //     cells[cells.length - 1].style.backgroundColor = '';
-    // }
     
-    
+    if (time % 15 === 0) {
+        for (const cell of cells) {
+            cell.style.backgroundColor = cell.style.backgroundColor === 'rgb(0, 255, 0)' ? 'rgb(250, 79, 132)' : 'rgb(0, 255, 0)';
+        }
+    }
 
-    requestAnimationFrame(() => animate(time + 1))
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style.transform = 'rotate('+ time +'deg)'; 
+    }
+    let container = document.getElementById('main-contain');
+    container.style.transform = 'rotate('+ time +'deg)'; 
+    let lines = document.getElementsByClassName('line-contain');
+    for (let i = 0; i < lines.length; i++) {
+        lines[i].style.transform = 'rotate('+ time +'deg)'; 
+    }
+    requestAnimationFrame(() => animate(time + 1))  
 }
 
+
+
+
+
+// function baseAnimation(incrementalTime, lastTime, counter) {
+
+//     let delta = incrementalTime - lastTime;
+//     lastTime = incrementalTime;
+
+
+//     console.log(delta);
+//     requestAnimationFrame((incremental) => baseAnimation(incremental, lastTime, counter + 1));
+// }
